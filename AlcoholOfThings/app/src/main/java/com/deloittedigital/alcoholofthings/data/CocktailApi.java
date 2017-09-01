@@ -9,7 +9,7 @@ import rx.Observable;
 
 public interface CocktailApi {
 
-	@POST("/cocktail")
+	@POST("http://172.20.3.194:3000")
 	Observable<Response<String>> sendCocktailItems(@Body String[] selectedItems);
 
 }

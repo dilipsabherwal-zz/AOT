@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AlcoholOfThings</string>
     <string name="cocktail_one">Gin + Tonic</string>
-    <string name="cocktail_two">Whiskey Sour</string>
+    <string name="cocktail_two">Vodka + Orange</string>
     <string name="cocktail_three">Jack + Coke</string>
     <string name="cocktail_four">Jagerbomb</string>
 </resources>

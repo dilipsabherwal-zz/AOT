@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.deloittedigital.alcoholofthings.R;
 import com.deloittedigital.alcoholofthings.data.CocktailService;
+import com.deloittedigital.alcoholofthings.di.Injector;
 
 import javax.inject.Inject;
 
@@ -42,6 +43,7 @@ public class MainFragment extends Fragment implements MainContract.View {
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View root = inflater.inflate(R.layout.fragment_main, container, false);
 		ButterKnife.bind(this, root);
+		Injector.get().inject(this);
 
 		return root;
 	}
@@ -65,19 +67,19 @@ public class MainFragment extends Fragment implements MainContract.View {
 	@OnClick(R.id.cocktail_two)
 	public void onCocktailTwoBtn() {
 		Toast.makeText(getContext(), getResources().getString(R.string.cocktail_two) + " selected", Toast.LENGTH_SHORT).show();
-		//mPresenter.sendCocktail(new String[]{"Gin", "Tonic"});
+		mPresenter.sendCocktail(new String[]{"Vodka", "Orange"});
 	}
 
 	@OnClick(R.id.cocktail_three)
 	public void onCocktailThreeBtn() {
 		Toast.makeText(getContext(), getResources().getString(R.string.cocktail_three) + " selected", Toast.LENGTH_SHORT).show();
-		//mPresenter.sendCocktail(new String[]{"Gin", "Tonic"});
+		mPresenter.sendCocktail(new String[]{"Jack", "Coke"});
 	}
 
 	@OnClick(R.id.cocktail_four)
 	public void onCocktailFourBtn() {
 		Toast.makeText(getContext(), getResources().getString(R.string.cocktail_four) + " selected", Toast.LENGTH_SHORT).show();
-		//mPresenter.sendCocktail(new String[]{"Gin", "Tonic"});
+		mPresenter.sendCocktail(new String[]{"Jagermeister", "Red Bull"});
 	}
 
 	@Override

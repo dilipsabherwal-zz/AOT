@@ -21,10 +21,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Injector.init(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initFragment(MainFragment.newInstance());

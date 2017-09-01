@@ -57,7 +57,7 @@ public class CocktailModule {
 	public CocktailApi providesCocktailApi(OkHttpClient okHttpClient) {
 
 		Retrofit retrofit = new Retrofit.Builder()
-				.baseUrl("http://localhost:8080")
+				.baseUrl("http://172.20.3.194:3000")
 				.client(okHttpClient)
 				.addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
 				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
