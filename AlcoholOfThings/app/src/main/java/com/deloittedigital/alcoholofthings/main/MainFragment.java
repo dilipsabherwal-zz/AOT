@@ -12,13 +12,18 @@ import android.widget.Toast;
 import com.deloittedigital.alcoholofthings.R;
 import com.deloittedigital.alcoholofthings.data.CocktailService;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements MainContract.View {
 
+	@Inject
 	CocktailService mCocktailService;
+
+	private MainPresenter mPresenter;
 
 	@BindView(R.id.cocktail_one)
 	Button cocktailOneBtn;
@@ -41,27 +46,48 @@ public class MainFragment extends Fragment {
 		return root;
 	}
 
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		mPresenter = new MainPresenter(new MainInteractor(mCocktailService), this);
+	}
+
 	public static MainFragment newInstance() {
 		return new MainFragment();
 	}
 
 	@OnClick(R.id.cocktail_one)
 	public void onCocktailOneBtn() {
-		Toast.makeText(getContext(), "Cocktail One clicked", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getContext(), getResources().getString(R.string.cocktail_one) + " selected", Toast.LENGTH_SHORT).show();
+		mPresenter.sendCocktail(new String[]{"Gin", "Tonic"});
 	}
 
 	@OnClick(R.id.cocktail_two)
 	public void onCocktailTwoBtn() {
-		Toast.makeText(getContext(), "Cocktail Two clicked", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getContext(), getResources().getString(R.string.cocktail_two) + " selected", Toast.LENGTH_SHORT).show();
+		//mPresenter.sendCocktail(new String[]{"Gin", "Tonic"});
 	}
 
 	@OnClick(R.id.cocktail_three)
 	public void onCocktailThreeBtn() {
-		Toast.makeText(getContext(), "Cocktail Three clicked", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getContext(), getResources().getString(R.string.cocktail_three) + " selected", Toast.LENGTH_SHORT).show();
+		//mPresenter.sendCocktail(new String[]{"Gin", "Tonic"});
 	}
 
 	@OnClick(R.id.cocktail_four)
 	public void onCocktailFourBtn() {
-		Toast.makeText(getContext(), "Cocktail Four clicked", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getContext(), getResources().getString(R.string.cocktail_four) + " selected", Toast.LENGTH_SHORT).show();
+		//mPresenter.sendCocktail(new String[]{"Gin", "Tonic"});
 	}
+
+	@Override
+	public void showErrorToast(String msg) {
+		Toast.makeText(getContext(), "Error: " + msg, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void successMessage(String response) {
+		Toast.makeText(getContext(), "Success: " + response, Toast.LENGTH_SHORT).show();
+	}
+
 }

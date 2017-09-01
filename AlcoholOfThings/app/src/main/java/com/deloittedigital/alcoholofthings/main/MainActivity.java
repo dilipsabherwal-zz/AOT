@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.deloittedigital.alcoholofthings.R;
 import com.deloittedigital.alcoholofthings.data.CocktailService;
+import com.deloittedigital.alcoholofthings.di.Injector;
 
 import javax.inject.Inject;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Injector.init(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initFragment(MainFragment.newInstance());

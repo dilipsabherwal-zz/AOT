@@ -1,6 +1,23 @@
 package com.deloittedigital.alcoholofthings.data;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import com.google.gson.GsonBuilder;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import javax.inject.Singleton;
+
+import dagger.Provides;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Completable;
 import rx.Observable;
 import rx.exceptions.Exceptions;
@@ -10,9 +27,13 @@ public class CocktailService {
 
 	private CocktailApi mCocktailApi;
 
-	public Observable<String> selectCocktail(final String cocktail) {
+	public CocktailService(CocktailApi cocktailApi){
+		mCocktailApi = cocktailApi;
+	}
 
-		return Observable.defer(() -> mCocktailApi.sendCocktail(cocktail))
+	public Observable<String> selectCocktail(final String[] selectedItems) {
+
+		return Observable.defer(() -> mCocktailApi.sendCocktailItems(selectedItems))
 				.subscribeOn(Schedulers.io())
 				.map(Response::body);
 
