@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
@@ -11,11 +12,16 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 
@@ -24,7 +30,32 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    compile "com.google.dagger:dagger:$rootProject.daggerVersion"
+    compile("com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion") {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+    compile("com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion") {
+        exclude group: 'com.squareup.okio', module: 'okio'
+    }
+    compile "com.squareup.okio:okio:$rootProject.okioVersion"
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+
+    compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.retrofitVersion"
+    compile "io.reactivex:rxandroid:$rootProject.rxAndroidVersion"
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile "io.reactivex:rxjava:$rootProject.rxJavaVersion"
+
+    apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    apt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+
     testCompile 'junit:junit:4.12'
 }
+
+apply plugin: 'me.tatarka.retrolambda'

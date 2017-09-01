@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AlcoholOfThings</string>
+    <string name="cocktail_one">Cocktail one</string>
+    <string name="cocktail_two">Cocktail two</string>
+    <string name="cocktail_three">Cocktail three</string>
+    <string name="cocktail_four">Cocktail four</string>
 </resources>
