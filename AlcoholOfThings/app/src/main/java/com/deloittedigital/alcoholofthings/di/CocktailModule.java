@@ -59,7 +59,7 @@ public class CocktailModule {
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl("http://172.20.3.194:3000")
 				.client(okHttpClient)
-				.addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
+				.addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
 				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
 				.build();
 
